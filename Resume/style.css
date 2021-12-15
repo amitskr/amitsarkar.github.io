@@ -1,0 +1,21 @@
+h2 {
+  font: 800 30px system-ui;
+}
+
+h2 span {
+  background: #546e7a;
+  font-size: 80%;
+  font-weight: 600;
+  padding: 3px 12px 3px 10px;
+  border-radius: 100px;
+  border-end-start-radius: 0;
+}
+
+body {
+  background: #90a4ae;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
