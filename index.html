@@ -1,271 +1,1031 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Amit Sarkar | Software Development Engineer | Android, Web & DevOps"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amit Sarkar - Software Development Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent1: #ec4899;
+            --accent2: #14b8a6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+            --gray: #64748b;
+        }
 
-    <!-- Icons -->
-    <script
-      src="https://kit.fontawesome.com/fa62c117c7.js"
-      crossorigin="anonymous"
-    ></script>
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    <link rel="stylesheet" href="styles.css" />
-    <title>Amit Sarkar | Portfolio</title>
-  </head>
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-  <body class="dark" id="top">
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #fbbf24;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .location {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background: #fbbf24;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(99,102,241,0.5) 35px, rgba(99,102,241,0.5) 70px);
+            pointer-events: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border: 5px solid white;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+            font-size: 0.95rem;
+        }
+
+        .about-text h3 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .experience-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .company {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .experience-meta {
+            text-align: right;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .experience-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: scaleIn 0.6s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) rotate(-1deg);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-type {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .skill-item {
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .skill-item:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.4s ease;
+            animation: scaleIn 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .achievement-card:hover::before {
+            left: 100%;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.25);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .achievement-card h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .achievement-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d1b4e 50%, #1e1e2e 100%);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #a78bfa;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fbbf24;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-meta {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
     <!-- Header -->
-    <header class="header center">
-      <h3>
-        <a href="#top" class="link logo">AS.</a>
-      </h3>
-
-      <nav class="nav center">
-        <ul class="nav__list center">
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#experience">Experience</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#projects">Projects</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#skills">Skills</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#contact">Contact</a>
-          </li>
-        </ul>
-
-        <button type="button" aria-label="toggle theme" class="btn btn--icon">
-          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
-        </button>
-
-        <button
-          type="button"
-          aria-label="toggle navigation"
-          class="btn btn--icon nav__hamburger"
-        >
-          <i aria-hidden="true" class="fas fa-bars"></i>
-        </button>
-      </nav>
+    <header>
+        <nav class="container">
+            <div class="logo">AS</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">☰</div>
+        </nav>
     </header>
 
-    <main>
-      <!-- About -->
-      <section class="about center">
-        <h1>
-          Hi, I’m <span class="about__name">Amit Sarkar</span>
-        </h1>
-
-        <h2 class="about__role">
-          Software Development Engineer | Android • Web • DevOps
-        </h2>
-
-        <p class="about__desc">
-          I’m a Computer Science graduate with hands-on experience in building
-          scalable web applications, Android apps, and cloud-based systems.
-          <br /><br />
-          Currently working as a <strong>Technical Growth Associate at Coding Ninjas</strong>,
-          where I blend engineering with data-driven growth strategies—building
-          internal tools, automating workflows, and integrating CRMs to improve
-          operational efficiency.
-          <br /><br />
-          I enjoy solving real-world problems, shipping production-ready systems,
-          and continuously learning across engineering and product domains.
-        </p>
-
-        <div class="about__contact center">
-          <a href="Resume/index.html" class="btn btn--outline">View Resume</a>
-
-          <a
-            href="https://github.com/amitskr"
-            aria-label="github"
-            class="link link--icon"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-
-          <a
-            href="https://linkedin.com/in/amitskr"
-            aria-label="linkedin"
-            class="link link--icon"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Amit Sarkar</h1>
+            <p class="subtitle">Software Development Engineer</p>
+            <p class="location">📍 Sector 39, Gurugram, Haryana</p>
+            <div class="hero-buttons">
+                <a href="mailto:amitskr6@gmail.com" class="btn btn-primary">Get In Touch</a>
+                <a href="https://linkedin.com/in/amitskr" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Experience -->
-      <section class="section" id="experience">
-        <h2 class="section__title">Experience</h2>
-
-        <div class="timeline">
-          <div class="card">
-            <h3>Coding Ninjas</h3>
-            <p class="role">Technical Growth Associate · July 2024 – Present</p>
-            <ul>
-              <li>
-                Built an internal Sales Helpbook web platform using React to
-                centralize sales enablement resources.
-              </li>
-              <li>
-                Developed a Streamlit-based automation tool to generate invoices
-                from CSV data using Python, Pandas, and FPDF.
-              </li>
-              <li>
-                Created Metabase dashboards to analyze growth metrics and
-                deliver actionable insights for leadership.
-              </li>
-              <li>
-                Integrated LeadSquared and Zoom APIs to automate lead capture,
-                webinar workflows, and CRM data synchronization.
-              </li>
-              <li>
-                Worked on WordPress frontend & backend optimizations, increasing
-                lead generation by ~10%.
-              </li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Resurrection Design Studio</h3>
-            <p class="role">Software Trainee · May 2023 – Aug 2023</p>
-            <ul>
-              <li>
-                Developed native Android applications in Java across the full
-                development lifecycle.
-              </li>
-              <li>
-                Conducted code reviews and performance optimizations, improving
-                load times by ~20%.
-              </li>
-              <li>
-                Integrated REST APIs and collaborated with designers on UI/UX.
-              </li>
-              <li>
-                Used Git for version control and actively participated in sprint
-                planning and stand-ups.
-              </li>
-            </ul>
-          </div>
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <div class="profile-pic">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQHa3yDxW5LLPA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724614723733?e=1741824000&v=beta&t=oOQbFqWqsP3hUf-0rSNFWRx5HqEYzp0jYqMoUy3Lzro" alt="Amit Sarkar">
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">📧 amitskr6@gmail.com</div>
+                    <div class="contact-item">📱 +91 8617048446</div>
+                    <div class="contact-item">🔗 linkedin.com/in/amitskr</div>
+                </div>
+            </div>
+            <div class="about-text">
+                <h3>Hello! I'm Amit</h3>
+                <p>I'm a passionate Software Development Engineer with a strong foundation in full-stack development, cloud computing, and mobile application development. Currently working as a Technical Growth Associate at Coding Ninjas, where I blend technical expertise with strategic growth initiatives.</p>
+                <p>I graduated from Chandigarh University with a B.E. in Computer Science & Engineering (CGPA: 8.03), and I've been fortunate to work on diverse projects ranging from Android apps to cloud infrastructure deployment. My experience spans across React.js, Angular, Java, AWS, and various modern technologies.</p>
+                <p>I'm particularly proud of my hackathon achievements, including being 1st Runners Up at the Rajasthan IT Hackathon and reaching Top 10 at the E-Suraksha Hackathon. These experiences have sharpened my problem-solving skills and ability to work under pressure.</p>
+                <p>When I'm not coding, you'll find me exploring new technologies, watching anime, gaming, or planning my next travel adventure. I'm always eager to learn and take on new challenges that push my boundaries.</p>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Projects -->
-      <section id="projects" class="section projects">
-        <h2 class="section__title">Projects</h2>
+    <!-- Experience Section -->
+    <section id="experience" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Technical Growth Associate</h3>
+                            <p class="company">Coding Ninjas</p>
+                        </div>
+                        <div class="experience-meta">
+                            <div>July 2024 – Present</div>
+                            <div>📍 Gurugram, Haryana</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Developed Sales Helpbook, an internal React.js website that centralizes critical sales data for counsellors, streamlining the sales process</li>
+                        <li>Built a Streamlit-based web app using Python, Pandas, and FPDF to automate invoice generation from CSV data</li>
+                        <li>Contributed to new website development, enhancing UX/UI for improved user engagement</li>
+                        <li>Analyzed company data on Metabase, creating actionable dashboards that improved decision-making and workflow efficiency</li>
+                        <li>Automated Zoom webinars with Python backend, implementing scheduled starts and automatic lead capture via Zoom APIs</li>
+                        <li>Integrated LeadSquared API to streamline lead management and automate CRM data flow</li>
+                        <li>Created and maintained WordPress pages with strategic content design, achieving a 10% boost in lead generation</li>
+                    </ul>
+                </div>
 
-        <div class="projects__grid">
-          <div class="project">
-            <h3>IMDBv1</h3>
-            <p class="project__description">
-              React-based movie tracking platform featuring trending movies,
-              search, watchlists, and persistent favorites using TMDB API.
-            </p>
-            <ul class="project__stack">
-              <li>React</li>
-              <li>JavaScript</li>
-              <li>TMDB API</li>
-              <li>Context API</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <h3>Employee Management System</h3>
-            <p class="project__description">
-              Web-based admin platform to manage employee attendance, leaves, and
-              profiles with role-based access.
-            </p>
-            <ul class="project__stack">
-              <li>Angular</li>
-              <li>TypeScript</li>
-              <li>Bootstrap</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <h3>WordPress Deployment on AWS</h3>
-            <p class="project__description">
-              Deployed a scalable WordPress application on AWS using EC2,
-              Apache, MySQL, and SSL with Let’s Encrypt.
-            </p>
-            <ul class="project__stack">
-              <li>AWS EC2</li>
-              <li>Linux</li>
-              <li>Apache</li>
-              <li>MySQL</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <h3>Unnati (Hackathon Winner)</h3>
-            <p class="project__description">
-              Award-winning Android application connecting startups and
-              businesses with investors via a government-backed channel.
-            </p>
-            <ul class="project__stack">
-              <li>Java</li>
-              <li>Firebase</li>
-              <li>Cloud Firestore</li>
-            </ul>
-          </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Software Trainee</h3>
+                            <p class="company">Resurrection Design Studio</p>
+                        </div>
+                        <div class="experience-meta">
+                            <div>May 2023 – August 2023</div>
+                            <div>📍 Kolkata, WB</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Developed Android applications in Java, covering the full development lifecycle from concept to deployment</li>
+                        <li>Conducted comprehensive code reviews, optimizing performance for 20% faster loading times</li>
+                        <li>Collaborated on UI/UX design and integrated RESTful APIs for seamless data exchange</li>
+                        <li>Demonstrated strong troubleshooting and debugging skills across multiple projects</li>
+                        <li>Utilized Git for version control and actively participated in daily stand-ups and sprint planning</li>
+                        <li>Proactively learned new technologies to stay current with industry trends</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Skills -->
-      <section class="section skills" id="skills">
-        <h2 class="section__title">Skills</h2>
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>IMDBv1</h3>
+                    <p class="project-type">Academic Project • October 2023</p>
+                </div>
+                <div class="project-body">
+                    <p>A React-based web application for tracking and managing movies, featuring trending and popular sections, watchlists, and movie search powered by TMDB API. Implemented with global state management and persistent favorites.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">TMDB API</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Vite</span>
+                    </div>
+                </div>
+            </div>
 
-        <ul class="skills__list">
-          <li class="btn btn--plain">Java</li>
-          <li class="btn btn--plain">JavaScript</li>
-          <li class="btn btn--plain">TypeScript</li>
-          <li class="btn btn--plain">React</li>
-          <li class="btn btn--plain">Angular</li>
-          <li class="btn btn--plain">Flutter</li>
-          <li class="btn btn--plain">Android</li>
-          <li class="btn btn--plain">AWS</li>
-          <li class="btn btn--plain">Docker</li>
-          <li class="btn btn--plain">Firebase</li>
-          <li class="btn btn--plain">MongoDB</li>
-          <li class="btn btn--plain">Git</li>
-          <li class="btn btn--plain">Linux</li>
-        </ul>
-      </section>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Unnati</h3>
+                    <p class="project-type">Hackathon Project • March 2023</p>
+                </div>
+                <div class="project-body">
+                    <p>Award-winning project (1st Runners Up at Rajasthan IT Hackathon). A native Android application that connects businesses and startups with investors through a government channel, facilitating investment opportunities.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Firebase Auth</span>
+                        <span class="tech-tag">Cloud Firestore</span>
+                        <span class="tech-tag">Firebase Storage</span>
+                    </div>
+                </div>
+            </div>
 
-      <!-- Contact -->
-      <section class="section contact center" id="contact">
-        <h2 class="section__title">Contact</h2>
-        <p>Open to SDE, Android, and Backend opportunities.</p>
-        <a href="mailto:amitskr6@gmail.com" class="btn btn--outline">
-          Email Me
-        </a>
-      </section>
-    </main>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Employee Management System</h3>
+                    <p class="project-type">Academic Project • February 2024</p>
+                </div>
+                <div class="project-body">
+                    <p>A comprehensive web-based platform built with Angular 20 that enables administrators to efficiently manage employee attendance, leave requests, and profile information.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Angular 20</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+            </div>
 
-    <footer class="footer">
-      <p>© 2026 Amit Sarkar · Built with ❤️</p>
-    </footer>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>WordPress on AWS</h3>
+                    <p class="project-type">Academic Project • March 2024</p>
+                </div>
+                <div class="project-body">
+                    <p>Deployed a scalable WordPress application on AWS, demonstrating proficiency in cloud architecture using core AWS services to build resilient infrastructure with proper security configurations.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">AWS EC2</span>
+                        <span class="tech-tag">Apache</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">WordPress</span>
+                        <span class="tech-tag">Let's Encrypt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="scroll-top">
-      <a href="#top" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-      </a>
-    </div>
+    <!-- Skills Section -->
+    <section id="skills" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>💻 Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">C++</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">TypeScript</span>
+                        <span class="skill-item">Dart</span>
+                        <span class="skill-item">Kotlin</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">Python</span>
+                    </div>
+                </div>
 
-    <script src="./script.js"></script>
-  </body>
-</html>
+                <div class="skill-category">
+                    <h3>🚀 Frameworks & Libraries</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">React.js</span>
+                        <span class="skill-item">Angular</span>
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">Flutter</span>
+                        <span class="skill-item">Android SDK</span>
+                        <span class="skill-item">Streamlit</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>☁️ Cloud & DevOps</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">AWS</span>
+                        <span class="skill-item">EC2</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">GitHub</span>
+                        <span class="skill-item">Linux Server</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🗄️ Databases</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">MySQL</span>
+                        <span class="skill-item">MongoDB</span>
+                        <span class="skill-item">Firebase</span>
+                        <span class="skill-item">Cloud Firestore</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🛠️ Tools & Technologies</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Postman</span>
+                        <span class="skill-item">Figma</span>
+                        <span class="skill-item">WordPress</span>
+                        <span class="skill-item">Metabase</span>
+                        <span class="skill-item">SSH</span>
+                        <span class="skill-item">VirtualBox</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>📚 Areas of Expertise</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Web Development</span>
+                        <span class="skill-item">Mobile Development</span>
+                        <span class="skill-item">API Design</span>
+                        <span class="skill-item">Cloud Computing</span>
+                        <span class="skill-item">Database Management</span>
+                        <span class="skill-item">Version Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="container">
+        <h2 class="section-title">Achievements & Recognition</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🥈</div>
+                <h3>Rajasthan IT Hackathon</h3>
+                <p>1st Runners Up</p>
+                <p>March 2023</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🏆</div>
+                <h3>E-Suraksha Hackathon</h3>
+                <p>Top 10 Finalist</p>
+                <p>November 2023</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">⭐</div>
+                <h3>Academic Excellence Award</h3>
+                <p>Chandigarh University</p>
+                <p>June 2023</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🎤</div>
+                <h3>Speak-to-Lead</h3>
+                <p>Best Speaker Award</p>
+                <p>April 2022</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">💡</div>
+                <h3>CU Projects Expo</h3>
+                <p>Top Project Recognition</p>
+                <p>April 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Amit Sarkar</h3>
+                    <p style="color: rgba(255,255,255,0.8);">Software Development Engineer passionate about building innovative solutions and solving complex problems.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:amitskr6@gmail.com">amitskr6@gmail.com</a></li>
+                        <li><a href="tel:+918617048446">+91 8617048446</a></li>
+                        <li><a href="https://linkedin.com/in/amitskr" target="_blank">LinkedIn Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Education</h3>
+                    <p style="color: rgba(255,255,255,0.8);"><strong>Chandigarh University</strong></p>
+                    <p style="color: rgba(255,255,255,0.8);">B.E. Computer Science & Engineering</p>
+                    <p style="color: rgba(255,255,255,0.8);">2020 - 2024 | CGPA: 8
